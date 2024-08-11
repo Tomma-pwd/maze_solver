@@ -1,6 +1,7 @@
-from graphics import Line, Point
+from graphics import Line, Point, Circle
 class Cell:
     def __init__(self, win = None):
+       self.has_circle = False
        self.has_top_wall = True
        self.has_right_wall = True
        self.has_bottom_wall = True
@@ -41,6 +42,10 @@ class Cell:
         else:
             line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line, "white")
+        if self.has_circle:
+            circle = Circle(Point((x1 + x2)/2, (y1 + y2)/2), r = min((x2 - x1)/2, (y2 - y1)/2))
+            self._win.draw_circle(circle)
+    
     def draw_move(self, to_cell, undo=False):
         origin_x = (self._x1 + self._x2)/2
         origin_y = (self._y1 + self._y2)/2
