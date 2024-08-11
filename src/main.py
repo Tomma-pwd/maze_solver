@@ -12,9 +12,11 @@ def main():
     cell_size_y = (screen_y - 2 * margin) / num_rows
     win = Window(screen_x, screen_y)
 
-    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
-    maze._cells[0][0].has_circle = True
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, seed = "987813")
+    #maze._cells[0][0].has_circle = True
     maze._break_walls_r(0, 0)
+    maze._reset_cells_visited()
+    maze.solve()
     win.wait_for_close()
 
 
